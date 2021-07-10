@@ -1,0 +1,281 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>開発者向け天気予報サイト</title>
+        <link rel="icon" type="image/png" href="{% static 'picture/icon.png' %}">
+        <script src="{% static 'js/pref.js' %}"></script>
+        <link rel="stylesheet" href="{% static 'css/top.css' %}">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;900&family=Shippori+Mincho&display=swap" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="body">
+            <header>
+                <div class="hamburger-menu">
+                    <input type="checkbox" id="menu-btn-check">
+                    <label for="menu-btn-check" class="menu-btn"><span></span></label>
+                    <div class="menu-content">
+                        <ul>
+                            <li>
+                                 <a href="{% url 'gaiyou' %}" onmouseover="over2(this)" onmouseout="leave2(this)"><p id="sono2">当サイトについて</p></a>
+                            </li>
+                            <li>
+                                <a href="{% url 'toukou' %}" onmouseover="over3(this)" onmouseout="leave3(this)"><p id="sono3">お問い合わせフォーム</p></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </header>
+            
+            <div class="title">
+                <div class="title_moji">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-1"></div>
+                            <div class="col-9">
+                                <h1 class="display-1 title_h1"><span>開発者向け</span><span>天気予報</span><span>サイト</span></h1>
+                            </div>
+                            <div class="col-1"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <br>
+            <div class="container">
+                <div class="row my_grid">
+                    <div class="col-12">
+                        <h2>北海道・東北地方</h2>
+                        <hr>
+                    </div>
+
+                </div>  
+
+                <div class="row my_grid">
+                    <div class="col-lg-2 col-md-3">
+                        <a href="/prefecture/01" role="button" class="btn btn-outline-success w-100">北海道</a>
+                    </div>
+                    <div class="col-lg-2 col-md-3">
+                        <a href="/prefecture/02" role="button" class="btn btn-outline-success w-100">青森県</a>
+                    </div>
+                    <div class="col-lg-2 col-md-3">
+                        <a href="/prefecture/03" role="button" class="btn btn-outline-success w-100">岩手県</a>
+                    </div>
+                    <div class="col-lg-2 col-md-3">
+                        <a href="/prefecture/04" role="button" class="btn btn-outline-success w-100">宮城県</a>
+                    </div>
+                    <div class="col-lg-2 col-md-3">
+                        <a href="/prefecture/05" role="button" class="btn btn-outline-success w-100">秋田県</a>
+                    </div>
+                    <div class="col-lg-2 col-md-3">
+                        <a href="/prefecture/06" role="button" class="btn btn-outline-success w-100">山形県</a>
+                    </div>
+                    <div class="col-lg-2 col-md-3">
+                        <a href="/prefecture/07" role="button" class="btn btn-outline-success w-100">福島県</a>
+                    </div>
+                </div>
+
+                <br>
+                <div class="row my_grid">
+                    <div class="col-12">
+                        <h2>関東地方</h2>
+                        <hr>
+                    </div>
+                    
+                </div>
+
+
+                <div class="row my_grid">
+                    <div class="col-lg-2 col-md-3">
+                        <a href="/prefecture/08" role="button" class="btn btn-outline-success w-100">茨城県</a>
+                    </div>
+                    <div class="col-lg-2 col-md-3">
+                        <a href="/prefecture/09" role="button" class="btn btn-outline-success w-100">栃木県</a>
+                    </div>
+                    <div class="col-lg-2 col-md-3">
+                        <a href="/prefecture/10" role="button" class="btn btn-outline-success w-100">群馬県</a>
+                    </div>
+                    <div class="col-lg-2 col-md-3">
+                        <a href="/prefecture/11" role="button" class="btn btn-outline-success w-100">埼玉県</a>
+                    </div>
+                    <div class="col-lg-2 col-md-3">
+                        <a href="/prefecture/12" role="button" class="btn btn-outline-success w-100">千葉県</a>
+                    </div>
+                    <div class="col-lg-2 col-md-3">
+                        <a href="/prefecture/13" role="button" class="btn btn-outline-success w-100">東京都</a>
+                    </div>
+                    <div class="col-lg-2 col-md-3">
+                        <a href="/prefecture/14" role="button" class="btn btn-outline-success w-100">神奈川県</a>
+                    </div>
+                </div>
+
+                <br>
+                <div class="row my_grid">
+                    <div class="col-12">
+                        <h2>中部地方</h2>
+                        <hr>
+                    </div>               
+                </div>
+
+
+                <div class="row my_grid">
+                    <div class="col-lg-2 col-md-3">
+                        <a href="/prefecture/15" role="button" class="btn btn-outline-success w-100">新潟県</a>
+                    </div>
+                    <div class="col-lg-2 col-md-3">
+                        <a href="/prefecture/16" role="button" class="btn btn-outline-success w-100">富山県</a>
+                    </div>
+                    <div class="col-lg-2 col-md-3">
+                        <a href="/prefecture/17" role="button" class="btn btn-outline-success w-100">石川県</a>
+                    </div>
+                    <div class="col-lg-2 col-md-3">
+                        <a href="/prefecture/18" role="button" class="btn btn-outline-success w-100">福井県</a>
+                    </div>
+                    <div class="col-lg-2 col-md-3">
+                        <a href="/prefecture/19" role="button" class="btn btn-outline-success w-100">山梨県</a>
+                    </div>
+                    <div class="col-lg-2 col-md-3">
+                        <a href="/prefecture/20" role="button" class="btn btn-outline-success w-100">長野県</a>
+                    </div>
+                    <div class="col-lg-2 col-md-3">
+                        <a href="/prefecture/21" role="button" class="btn btn-outline-success w-100">岐阜県</a>
+                    </div>
+                    <div class="col-lg-2 col-md-3">
+                        <a href="/prefecture/22" role="button" class="btn btn-outline-success w-100">静岡県</a>
+                    </div>
+                    <div class="col-lg-2 col-md-3">
+                        <a href="/prefecture/23" role="button" class="btn btn-outline-success w-100">愛知県</a>
+                    </div>
+                </div>
+
+                <br>
+                <div class="row my_grid">
+                    <div class="col-12">
+                        <h2>近畿地方</h2>
+                        <hr>
+                    </div>
+                </div>
+
+
+                <div class="row my_grid">
+                    <div class="col-lg-2 col-md-3">
+                        <a href="/prefecture/24" role="button" class="btn btn-outline-success w-100">三重県</a>
+                    </div>
+                    <div class="col-lg-2 col-md-3">
+                        <a href="/prefecture/25" role="button" class="btn btn-outline-success w-100">滋賀県</a>
+                    </div>
+                    <div class="col-lg-2 col-md-3">
+                        <a href="/prefecture/26" role="button" class="btn btn-outline-success w-100">京都府</a>
+                    </div>
+                    <div class="col-lg-2 col-md-3">
+                        <a href="/prefecture/27" role="button" class="btn btn-outline-success w-100">大阪府</a>
+                    </div>
+                    <div class="col-lg-2 col-md-3">
+                        <a href="/prefecture/28" role="button" class="btn btn-outline-success w-100">兵庫県</a>
+                    </div>
+                    <div class="col-lg-2 col-md-3">
+                        <a href="/prefecture/29" role="button" class="btn btn-outline-success w-100">奈良県</a>
+                    </div>
+                    <div class="col-lg-2 col-md-3">
+                        <a href="/prefecture/30" role="button" class="btn btn-outline-success w-100">和歌山県</a>
+                    </div>
+                </div>
+
+                <br>
+                <div class="row my_grid">
+                    <div class="col-12">
+                        <h2>中国地方</h2>
+                        <hr>
+                    </div>
+                </div>
+
+
+                <div class="row my_grid">
+                    <div class="col-lg-2 col-md-3">
+                        <a href="/prefecture/31" role="button" class="btn btn-outline-success w-100">鳥取県</a>
+                    </div>
+                    <div class="col-lg-2 col-md-3">
+                        <a href="/prefecture/32" role="button" class="btn btn-outline-success w-100">島根県</a>
+                    </div>
+                    <div class="col-lg-2 col-md-3">
+                        <a href="/prefecture/33" role="button" class="btn btn-outline-success w-100">岡山県</a>
+                    </div>
+                    <div class="col-lg-2 col-md-3">
+                        <a href="/prefecture/34" role="button" class="btn btn-outline-success w-100">広島県</a>
+                    </div>
+                    <div class="col-lg-2 col-md-3">
+                        <a href="/prefecture/35" role="button" class="btn btn-outline-success w-100">山口県</a>
+                    </div>
+                </div>
+
+                <br>
+                <div class="row my_grid">
+                    <div class="col-12">
+                        <h2>四国地方</h2>
+                        <hr>
+                    </div>
+                </div>
+
+
+                <div class="row my_grid">
+                    <div class="col-lg-2 col-md-3">
+                        <a href="/prefecture/36" role="button" class="btn btn-outline-success w-100">徳島県</a>
+                    </div>
+                    <div class="col-lg-2 col-md-3">
+                        <a href="/prefecture/37" role="button" class="btn btn-outline-success w-100">香川県</a>
+                    </div>
+                    <div class="col-lg-2 col-md-3">
+                        <a href="/prefecture/38" role="button" class="btn btn-outline-success w-100">愛媛県</a>
+                    </div>
+                    <div class="col-lg-2 col-md-3">
+                        <a href="/prefecture/39" role="button" class="btn btn-outline-success w-100">高知県</a>
+                    </div>
+                </div>
+
+                <br>
+                <div class="row my_grid">
+                    <div class="col-12">
+                        <h2>九州・沖縄地方</h2>
+                        <hr>
+                    </div>            
+                </div>
+
+
+                <div class="row my_grid">
+                    <div class="col-lg-2 col-md-3">
+                        <a href="/prefecture/40" role="button" class="btn btn-outline-success w-100">福岡県</a>
+                    </div>
+                    <div class="col-lg-2 col-md-3">
+                        <a href="/prefecture/41" role="button" class="btn btn-outline-success w-100">佐賀県</a>
+                    </div>
+                    <div class="col-lg-2 col-md-3">
+                        <a href="/prefecture/42" role="button" class="btn btn-outline-success w-100">長崎県</a>
+                    </div>
+                    <div class="col-lg-2 col-md-3">
+                        <a href="/prefecture/43" role="button" class="btn btn-outline-success w-100">熊本県</a>
+                    </div>
+                    <div class="col-lg-2 col-md-3">
+                        <a href="/prefecture/44" role="button" class="btn btn-outline-success w-100">大分県</a>
+                    </div>
+                    <div class="col-lg-2 col-md-3">
+                        <a href="/prefecture/45" role="button" class="btn btn-outline-success w-100">宮崎県</a>
+                    </div>
+                    <div class="col-lg-2 col-md-3">
+                        <a href="/prefecture/46" role="button" class="btn btn-outline-success w-100">鹿児島県</a>
+                    </div>
+                    <div class="col-lg-2 col-md-3">
+                        <a href="/prefecture/47" role="button" class="btn btn-outline-success w-100">沖縄県</a>
+                    </div>
+                </div>
+                <br>
+            </div>
+            <div class="top">
+                <a href="#"><img src="../static/picture/矢印ボタン　上2.png"></a>
+            </div>
+        </div>
+    </body>
+</html>

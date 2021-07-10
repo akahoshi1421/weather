@@ -1,0 +1,203 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <title>{{city}}</title>
+        <link rel="icon" type="image/png" href="{% static 'picture/icon.png' %}">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="{% static 'js/select.js' %}"></script>
+        <script src="{% static 'js/pref.js' %}"></script>
+        <link rel="stylesheet" href="{% static 'css/select.css' %}">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;900&family=Shippori+Mincho&display=swap" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-1.11.0.min.js" integrity="sha256-spTpc4lvj4dOkKjrGokIrHkJgNA0xMS98Pw9N7ir9oI=" crossorigin="anonymous"></script>
+        <style>
+            .pref{
+                background-image: url({{picture}});
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: cover;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="body">
+            <header>
+                <div class="hamburger-menu">
+                    <input type="checkbox" id="menu-btn-check">
+                    <label for="menu-btn-check" class="menu-btn"><span></span></label>
+                    <div class="menu-content">
+                        <ul>
+                            <li>
+                                <a href="{% url 'top' %}" onmouseover="over(this)" onmouseout="leave(this)"><p id="sono1">トップページ</p></a> 
+                            </li>
+                            <li>
+                                 <a href="{% url 'gaiyou' %}" onmouseover="over2(this)" onmouseout="leave2(this)"><p id="sono2">当サイトについて</p></a>
+                            </li>
+                            <li>
+                                <a href="{% url 'toukou' %}" onmouseover="over3(this)" onmouseout="leave3(this)"><p id="sono3">お問い合わせフォーム</p></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </header>
+
+            <div class="pref">
+                <div class="mask">
+                    <h1 class="display-1 pref2">{{city}}</h1>
+                </div>
+            </div> 
+            <div class="container my_grid naiyou">
+                <div class="row">
+                    <div class="col-lg-6 day">
+                        <h2>日程ごとの指定</h2>
+                        <form action = "/weather/{{city}}" method="POST" name = "form" id = "target">
+                            <div>
+                                <input type = "text" class="form-control w-50" value = "{{city}}" name="city" id = "city" readonly> 
+                            </div>
+                            <p>最高・最低気温表示</p>
+                            <div id = "temp" class="btn-group w-50" role="group" aria-label="temp">
+                                <input type="radio" class="btn-check" id="temp_y" value="temp_y" name="temp_yn" checked>
+                                <label class="btn btn-outline-primary" for="temp_y">する</label>
+                                <input type="radio" class="btn-check" id="temp_n" value="temp_n" name="temp_yn">
+                                <label class="btn btn-outline-primary" for="temp_n">しない</label>
+                            </div>
+                            <br>
+                            
+                            <p>風速表示</p>
+                            <div id = "wind" class="btn-group w-50" role="group" aria-label="wind">
+                                
+                                <input type="radio" class="btn-check" id="wind_y" value="wind_y" name="wind_yn" checked>
+                                <label class="btn btn-outline-primary" for="wind_y">する</label>
+                                <input type="radio" class="btn-check" id="wind_n" value="wind_n" name="wind_yn">
+                                <label class="btn btn-outline-primary" for="wind_n">しない</label>                
+                            </div>
+                            <br>
+
+                            <p>風向表示</p>
+                            <div id = "wind_dir" class="btn-group w-50" role="group" aria-label="wind_dir">
+                                
+                                <input type="radio" class="btn-check" id="wind_d_y" value="wind_d_y" name="wind_d_yn" checked>
+                                <label class="btn btn-outline-primary" for="wind_d_y">する</label>
+                                <input type="radio" class="btn-check" id="wind_d_n" value="wind_d_n" name="wind_d_yn">
+                                <label class="btn btn-outline-primary" for="wind_d_n">しない</label>             
+                            </div>
+                            <br>
+                            
+                            <p>雲量表示(%)</p>
+                            <div id = "clouds" class="btn-group w-50" role="group" aria-label="clouds">
+                                
+                                <input type="radio" class="btn-check" id="clouds_y" value="clouds_y" name="clouds" checked>
+                                <label class="btn btn-outline-primary" for="clouds_y">する</label>
+                                <input type="radio" class="btn-check" id="clouds_n" value="clouds_n" name="clouds">
+                                <label class="btn btn-outline-primary" for="clouds_n">しない</label> 
+                            </div>
+                            <br>
+
+                            <div>
+                                <p>時間幅設定(16日分まで)</p>
+                                <select class="form-select w-50" name = "times" id = "times">
+                                    <option value="1">1日分</option>
+                                    <option value="2">2日分</option>
+                                    <option value="3">3日分</option>
+                                    <option value="4">4日分</option>
+                                    <option value="5">5日分</option>
+                                    <option value="6">6日分</option>
+                                    <option value="7">7日分</option>
+                                    <option value="8">8日分</option>
+                                    <option value="9">9日分</option>
+                                    <option value="10">10日分</option>
+                                    <option value="11">11日分</option>
+                                    <option value="12">12日分</option>
+                                    <option value="13">13日分</option>
+                                    <option value="14">14日分</option>
+                                    <option value="15">15日分</option>
+                                    <option value="16">16日分</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <button type="submit" class="btn btn-success">JSONを出力</button>
+                            </div>
+                        </form>
+                        <div>
+                            <button onclick="out()" class="btn btn-primary">Pythonコードを見る</button>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="col-lg-6 time">
+                        <h2>時間ごとの指定</h2>
+                        <form action="/weather2/{{city}}" method="POST" name="form" id="target2">
+                            <div>
+                                <input type = "text" class="form-control w-50" value = "{{city}}" name="city2" id="city2" readonly> 
+                            </div>
+
+                            <p>気温表示</p>
+                            <div class="btn-group w-50" role="group" aria-label="temp">
+                                
+                                <input type="radio" class="btn-check" id="temp2_y" value="temp_y" name="temp_yn2" checked>
+                                <label class="btn btn-outline-primary" for="temp2_y">する</label>
+                                <input type="radio" class="btn-check" id="temp2_n" value="temp_n" name="temp_yn2">
+                                <label class="btn btn-outline-primary" for="temp2_n">しない</label>
+                            </div>
+                            <br>
+
+                            <p>風速表示</p>
+                            <div class="btn-group w-50" role="group" aria-label="wind">
+                                
+                                <input type="radio" class="btn-check" id="wind2_y" value="wind_y" name="wind_yn2" checked>
+                                <label class="btn btn-outline-primary" for="wind2_y">する</label>
+                                <input type="radio" class="btn-check" id="wind2_n" value="wind_n" name="wind_yn2">
+                                <label class="btn btn-outline-primary" for="wind2_n">しない</label>                
+                            </div>
+                            <br>
+
+                            <p>風向表示</p>
+                            <div class="btn-group w-50" role="group" aria-label="wind_dir">
+                                
+                                <input type="radio" class="btn-check" id="wind_d2_y" value="wind_d_y" name="wind_d_yn2" checked>
+                                <label class="btn btn-outline-primary" for="wind_d2_y">する</label>
+                                <input type="radio" class="btn-check" id="wind_d2_n" value="wind_d_n" name="wind_d_yn2">
+                                <label class="btn btn-outline-primary" for="wind_d2_n">しない</label>                
+                            </div>
+                            <br>
+                            
+                            <p>雲量表示(%)</p>
+                            <div class="btn-group w-50" role="group" aria-label="clouds">
+                                
+                                <input type="radio" class="btn-check" id="clouds2_y" value="clouds_y" name="clouds2" checked>
+                                <label class="btn btn-outline-primary" for="clouds2_y">する</label>
+                                <input type="radio" class="btn-check" id="clouds2_n" value="clouds_n" name="clouds2">
+                                <label class="btn btn-outline-primary" for="clouds2_n">しない</label> 
+                            </div>
+                            <br>
+
+                            <p>時間幅設定(48時間分まで)</p>
+                            <div class="btn-group w-50" role="group">
+                                
+                                <input type="number" class="form-control" min="1" max="48" value="1" id="times2" name="times2">
+                            </div>
+                            <br>
+
+                            <div>
+                                <button class="btn btn-success" type="submit">JSONを出力</button>
+                            </div>            
+                        </form>
+                        <div>
+                            <button onclick="out2()" class="btn btn-primary">Pythonコードを見る</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="container">
+                <div class="row">
+                    <div id="result"></div>
+                </div>
+            </div>
+
+        </div>
+    </body>
+</html>

@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{{pref}}</title>
+        <link rel="icon" type="image/png" href="{% static 'picture/icon.png' %}">
+        <script src="{% static 'js/pref.js' %}"></script>
+        <link rel="stylesheet" href="{% static 'css/pref.css' %}">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;900&family=Shippori+Mincho&display=swap" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        <style>
+            .pref{
+                background-image: url({{test}});
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: cover;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="body">
+            <header>
+                <div class="hamburger-menu">
+                    <input type="checkbox" id="menu-btn-check">
+                    <label for="menu-btn-check" class="menu-btn"><span></span></label>
+                    <div class="menu-content">
+                        <ul>
+                            <li>
+                                <a href="{% url 'top' %}" onmouseover="over(this)" onmouseout="leave(this)"><p id="sono1">トップページ</p></a> 
+                            </li>
+                            <li>
+                                 <a href="{% url 'gaiyou' %}" onmouseover="over2(this)" onmouseout="leave2(this)"><p id="sono2">当サイトについて</p></a>
+                            </li>
+                            <li>
+                                <a href="{% url 'toukou' %}" onmouseover="over3(this)" onmouseout="leave3(this)"><p id="sono3">お問い合わせフォーム</p></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </header>
+
+            <div>
+            <div class="pref">
+                <div class="mask">
+                    <h1 class="display-1 pref2">{{pref}}</h1>
+                </div>
+            </div>  
+            </div>
+            <br>
+            <br>
+            <div class="container">
+                <div class="row my_grid">
+                    {% for a in citys %}
+                        <div class="col-lg-2 col-md-3">
+                            <a href="/select/{{pref}}{{a}}" role="button" class="btn btn-outline-success w-100">{{a}}</a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <br>
+        </div>
+        <div class="top">
+            <a href="#"><img src="../static/picture/矢印ボタン　上2.png"></a>
+        </div>        
+            
+    </body>
+</html>
