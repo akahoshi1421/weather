@@ -24,6 +24,10 @@
     left: 100px;
 }
 
+.special{
+    font-family: 'Noto Serif JP', serif;
+}
+
 /*ここからハンバーガーメニュー*/
 .menu-btn {
     position: fixed;

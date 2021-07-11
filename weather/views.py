@@ -52,8 +52,19 @@ def prefecture(request, article_id):
     return render(request,"pref.html",content)
 
 def select(request, article_id):
+    city = str(article_id)
+    n = 0
+    city_post =""
+    city_hex = city.encode("utf-8").hex()
+    for a in city_hex:
+        if n % 2 == 0:
+            city_post += "%"
+        city_post += a.upper()
+        n += 1
+
     content = {
-        "city": str(article_id),
+        "city":city,
+        "city_form": city_post,
     }
     if str(article_id)[-1] == "市" or str(article_id)[-1] == "区":
         content["picture"] = "../static/picture/city.jpg"

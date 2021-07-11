@@ -48,6 +48,14 @@ span{
     width: 100%;
 }
 
+.special{
+    font-family: 'Noto Serif JP', serif;
+}
+
+h2{
+    font-family: 'Shippori Mincho', serif;
+}
+
 /*ここからハンバーガーメニュー*/
 .menu-btn {
     position: fixed;

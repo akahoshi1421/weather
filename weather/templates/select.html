@@ -31,13 +31,13 @@
                     <div class="menu-content">
                         <ul>
                             <li>
-                                <a href="{% url 'top' %}" onmouseover="over(this)" onmouseout="leave(this)"><p id="sono1">トップページ</p></a> 
+                                <a href="{% url 'top' %}" onmouseover="over(this)" onmouseout="leave(this)"><p id="sono1" class="special">トップページ</p></a> 
                             </li>
                             <li>
-                                 <a href="{% url 'gaiyou' %}" onmouseover="over2(this)" onmouseout="leave2(this)"><p id="sono2">当サイトについて</p></a>
+                                 <a href="{% url 'gaiyou' %}" onmouseover="over2(this)" onmouseout="leave2(this)"><p id="sono2" class="special">当サイトについて</p></a>
                             </li>
                             <li>
-                                <a href="{% url 'toukou' %}" onmouseover="over3(this)" onmouseout="leave3(this)"><p id="sono3">お問い合わせフォーム</p></a>
+                                <a href="{% url 'toukou' %}" onmouseover="over3(this)" onmouseout="leave3(this)"><p id="sono3" class="special">お問い合わせフォーム</p></a>
                             </li>
                         </ul>
                     </div>
@@ -55,9 +55,9 @@
                         <h2>日程ごとの指定</h2>
                         <form action = "/weather/{{city}}" method="POST" name = "form" id = "target">
                             <div>
-                                <input type = "text" class="form-control w-50" value = "{{city}}" name="city" id = "city" readonly> 
+                                <input type = "text" class="form-control w-50" value = "{{city_form}}" name="city" id = "city" readonly> 
                             </div>
-                            <p>最高・最低気温表示</p>
+                            <p class="special">最高・最低気温表示</p>
                             <div id = "temp" class="btn-group w-50" role="group" aria-label="temp">
                                 <input type="radio" class="btn-check" id="temp_y" value="temp_y" name="temp_yn" checked>
                                 <label class="btn btn-outline-primary" for="temp_y">する</label>
@@ -66,7 +66,7 @@
                             </div>
                             <br>
                             
-                            <p>風速表示</p>
+                            <p class="special">風速表示</p>
                             <div id = "wind" class="btn-group w-50" role="group" aria-label="wind">
                                 
                                 <input type="radio" class="btn-check" id="wind_y" value="wind_y" name="wind_yn" checked>
@@ -76,7 +76,7 @@
                             </div>
                             <br>
 
-                            <p>風向表示</p>
+                            <p class="special">風向表示</p>
                             <div id = "wind_dir" class="btn-group w-50" role="group" aria-label="wind_dir">
                                 
                                 <input type="radio" class="btn-check" id="wind_d_y" value="wind_d_y" name="wind_d_yn" checked>
@@ -86,7 +86,7 @@
                             </div>
                             <br>
                             
-                            <p>雲量表示(%)</p>
+                            <p class="special">雲量表示(%)</p>
                             <div id = "clouds" class="btn-group w-50" role="group" aria-label="clouds">
                                 
                                 <input type="radio" class="btn-check" id="clouds_y" value="clouds_y" name="clouds" checked>
@@ -97,7 +97,7 @@
                             <br>
 
                             <div>
-                                <p>時間幅設定(16日分まで)</p>
+                                <p class="special">時間幅設定(16日分まで)</p>
                                 <select class="form-select w-50" name = "times" id = "times">
                                     <option value="1">1日分</option>
                                     <option value="2">2日分</option>
@@ -124,6 +124,7 @@
                         </form>
                         <div>
                             <button onclick="out()" class="btn btn-primary">Pythonコードを見る</button>
+                            <button onclick="out3()" class="btn btn-primary">jQueryコードを見る</button>
                         </div>
                     </div>
                     <br>
@@ -131,10 +132,10 @@
                         <h2>時間ごとの指定</h2>
                         <form action="/weather2/{{city}}" method="POST" name="form" id="target2">
                             <div>
-                                <input type = "text" class="form-control w-50" value = "{{city}}" name="city2" id="city2" readonly> 
+                                <input type = "text" class="form-control w-50" value = "{{city_form}}" name="city2" id="city2" readonly> 
                             </div>
 
-                            <p>気温表示</p>
+                            <p class="special">気温表示</p>
                             <div class="btn-group w-50" role="group" aria-label="temp">
                                 
                                 <input type="radio" class="btn-check" id="temp2_y" value="temp_y" name="temp_yn2" checked>
@@ -144,7 +145,7 @@
                             </div>
                             <br>
 
-                            <p>風速表示</p>
+                            <p class="special">風速表示</p>
                             <div class="btn-group w-50" role="group" aria-label="wind">
                                 
                                 <input type="radio" class="btn-check" id="wind2_y" value="wind_y" name="wind_yn2" checked>
@@ -154,7 +155,7 @@
                             </div>
                             <br>
 
-                            <p>風向表示</p>
+                            <p class="special">風向表示</p>
                             <div class="btn-group w-50" role="group" aria-label="wind_dir">
                                 
                                 <input type="radio" class="btn-check" id="wind_d2_y" value="wind_d_y" name="wind_d_yn2" checked>
@@ -164,7 +165,7 @@
                             </div>
                             <br>
                             
-                            <p>雲量表示(%)</p>
+                            <p class="special">雲量表示(%)</p>
                             <div class="btn-group w-50" role="group" aria-label="clouds">
                                 
                                 <input type="radio" class="btn-check" id="clouds2_y" value="clouds_y" name="clouds2" checked>
@@ -174,7 +175,7 @@
                             </div>
                             <br>
 
-                            <p>時間幅設定(48時間分まで)</p>
+                            <p class="special">時間幅設定(48時間分まで)</p>
                             <div class="btn-group w-50" role="group">
                                 
                                 <input type="number" class="form-control" min="1" max="48" value="1" id="times2" name="times2">
@@ -187,6 +188,7 @@
                         </form>
                         <div>
                             <button onclick="out2()" class="btn btn-primary">Pythonコードを見る</button>
+                            <button onclick="out4()" class="btn btn-primary">jQueryコードを見る</button>
                         </div>
                     </div>
                 </div>
