@@ -7,6 +7,8 @@ from requests.models import HTTPError
 from weather.models import form
 
 
+API_KEY = "90e71c10644a0d4c078ffd46dcb2f6bc"
+
 # Create your views here.
 def top(request):
     return render(request, "top.html")
@@ -77,10 +79,12 @@ def select(request, article_id):
 
 def weather(request, article_id):
     if request.method == "POST":
+        weather_yn = request.POST.get("weather_yn", False)
         temp_yn = request.POST.get("temp_yn", False)
         wind_yn = request.POST.get("wind_yn", False)
         wind_d_yn = request.POST.get("wind_d_yn", False)
         clouds_yn = request.POST.get("clouds",False)
+        humid_yn = request.POST.get("humid", False)
         times = request.POST.get("times", False)
 
         if times == False:
@@ -102,6 +106,7 @@ def weather(request, article_id):
 
         #天気情報取得
         url = "https://weatherbit-v1-mashape.p.rapidapi.com/forecast/daily"
+        api = "https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&units=metric&lang=ja&appid={key}"
         querystring = {"lon":x, "lat":y}
 
         headers = {
@@ -109,7 +114,7 @@ def weather(request, article_id):
             'x-rapidapi-host': "weatherbit-v1-mashape.p.rapidapi.com"
             }
 
-
+        url2 = api.format(lat = y, lon = x, key = API_KEY)
 
         response = requests.request("GET", url, headers=headers, params=querystring)
         data = response.json()
@@ -120,7 +125,9 @@ def weather(request, article_id):
         for n,h in enumerate(day):
             d = {}
 
-            d["weather"] = day[n]["weather"]["description"]
+            if weather_yn == "weather_y":
+                d["weather"] = day[n]["weather"]["description"]
+            
             if temp_yn == "temp_y":
                 d["min"] = day[n]["min_temp"]
                 d["max"] = day[n]["high_temp"]
@@ -138,7 +145,17 @@ def weather(request, article_id):
 
             if n + 1 == int(times):
                 break
+        
+        if humid_yn == "humid_y":
+            response2 = requests.get(url2)
+            data2 = response2.json()
+            day = data2["daily"]
 
+            for n,h in enumerate(day):
+                days[str(n + 1)]["humid"] = day[n]["humidity"]        
+
+                if n + 1 == int(times):
+                    break
 
         return JsonResponse(days)
     return HttpResponse("ERROR")
@@ -146,11 +163,14 @@ def weather(request, article_id):
 
 def weather2(request, article_id):
     if request.method == "POST":
+        weather_yn = request.POST.get("weather_yn2", False)
         temp_yn = request.POST.get("temp_yn2", False)
         wind_yn = request.POST.get("wind_yn2", False)
         wind_d_yn = request.POST.get("wind_d_yn2", False)
         clouds_yn = request.POST.get("clouds2",False)
+        humid_yn = request.POST.get("humid2", False)
         times = request.POST.get("times2", False)
+
 
         if times == False:
             return HttpResponse("時間を選択してください")
@@ -171,6 +191,7 @@ def weather2(request, article_id):
 
         #天気情報取得
         url = "https://weatherbit-v1-mashape.p.rapidapi.com/forecast/hourly"
+        api = "https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&units=metric&lang=ja&appid={key}"
         querystring = {"lon":x, "lat":y}
 
         headers = {
@@ -178,8 +199,8 @@ def weather2(request, article_id):
             'x-rapidapi-host': "weatherbit-v1-mashape.p.rapidapi.com"
             }
 
-
-
+        url2 = api.format(lat = y, lon = x, key = API_KEY)
+        
         response = requests.request("GET", url, headers=headers, params=querystring)
         data = response.json()
         day=data["data"]
@@ -189,7 +210,9 @@ def weather2(request, article_id):
         for n,h in enumerate(day):
             d = {}
 
-            d["weather"] = day[n]["weather"]["description"]
+            if weather_yn == "weather_y":
+                d["weather"] = day[n]["weather"]["description"]
+
             if temp_yn == "temp_y":
                 d["temp"] = day[n]["temp"]
             
@@ -206,6 +229,18 @@ def weather2(request, article_id):
 
             if n + 1 == int(times):
                 break
+        
+        if humid_yn == "humid_y":
+            response2 = requests.get(url2)
+            data2 = response2.json()
+            day = data2["hourly"]
+
+            for n,h in enumerate(day):
+                days[str(n + 1)]["humid"] = day[n]["humidity"]        
+
+                if n + 1 == int(times):
+                    break
+
 
 
         return JsonResponse(days)

@@ -57,6 +57,15 @@
                             <div>
                                 <input type = "text" class="form-control w-50" value = "{{city_form}}" name="city" id = "city" readonly> 
                             </div>
+                            <p class="special">天気表示</p>
+                            <div id = "temp" class="btn-group w-50" role="group" aria-label="weather">
+                                <input type="radio" class="btn-check" id="weather_y" value="weather_y" name="weather_yn" checked>
+                                <label class="btn btn-outline-primary" for="weather_y">する</label>
+                                <input type="radio" class="btn-check" id="weather_n" value="weather_n" name="weather_yn">
+                                <label class="btn btn-outline-primary" for="weather_n">しない</label>
+                            </div>
+                            <br>
+
                             <p class="special">最高・最低気温表示</p>
                             <div id = "temp" class="btn-group w-50" role="group" aria-label="temp">
                                 <input type="radio" class="btn-check" id="temp_y" value="temp_y" name="temp_yn" checked>
@@ -93,6 +102,16 @@
                                 <label class="btn btn-outline-primary" for="clouds_y">する</label>
                                 <input type="radio" class="btn-check" id="clouds_n" value="clouds_n" name="clouds">
                                 <label class="btn btn-outline-primary" for="clouds_n">しない</label> 
+                            </div>
+                            <br>
+
+                            <p class="special">湿度表示(平均、8日分まで)</p>
+                            <div class="btn-group w-50" role="group" aria-label="humid">
+                                
+                                <input type="radio" class="btn-check" id="humid_y" value="humid_y" name="humid" checked>
+                                <label class="btn btn-outline-primary" for="humid_y">する</label>
+                                <input type="radio" class="btn-check" id="humid_n" value="humid_n" name="humid">
+                                <label class="btn btn-outline-primary" for="humid_n">しない</label> 
                             </div>
                             <br>
 
@@ -135,6 +154,16 @@
                                 <input type = "text" class="form-control w-50" value = "{{city_form}}" name="city2" id="city2" readonly> 
                             </div>
 
+                            <p class="special">天気表示</p>
+                            <div class="btn-group w-50" role="group" aria-label="weather">
+                                
+                                <input type="radio" class="btn-check" id="weather2_y" value="weather_y" name="weather_yn2" checked>
+                                <label class="btn btn-outline-primary" for="weather2_y">する</label>
+                                <input type="radio" class="btn-check" id="weather2_n" value="weather_n" name="weather_yn2">
+                                <label class="btn btn-outline-primary" for="weather2_n">しない</label>
+                            </div>
+                            <br>
+
                             <p class="special">気温表示</p>
                             <div class="btn-group w-50" role="group" aria-label="temp">
                                 
@@ -172,6 +201,16 @@
                                 <label class="btn btn-outline-primary" for="clouds2_y">する</label>
                                 <input type="radio" class="btn-check" id="clouds2_n" value="clouds_n" name="clouds2">
                                 <label class="btn btn-outline-primary" for="clouds2_n">しない</label> 
+                            </div>
+                            <br>
+
+                            <p class="special">湿度表示</p>
+                            <div class="btn-group w-50" role="group" aria-label="humid">
+                                
+                                <input type="radio" class="btn-check" id="humid2_y" value="humid_y" name="humid2" checked>
+                                <label class="btn btn-outline-primary" for="humid2_y">する</label>
+                                <input type="radio" class="btn-check" id="humid2_n" value="humid_n" name="humid2">
+                                <label class="btn btn-outline-primary" for="humid2_n">しない</label> 
                             </div>
                             <br>
 
